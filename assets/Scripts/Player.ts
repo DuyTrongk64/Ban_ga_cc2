@@ -9,6 +9,8 @@ export class Player extends Character{
     private screenSize: cc.Size = cc.view.getFrameSize();
 
     protected speed: number;
+    
+    
 
     onKeyDown(event) {
         // set a flag when key pressed
@@ -72,10 +74,10 @@ export class Player extends Character{
         this.goLeft = false;
         this.goRight = false;
         this.goUp = false;
-        this.goDown = false;
-
+        this.goDown = false; 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN,this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP,this.onKeyUp, this);
+        this.node.on(cc.Node.EventType.MOUSE_DOWN, this.onMouseDown, this);
     }
 
     on_hit(): void {
@@ -120,17 +122,33 @@ export class Player extends Character{
         }
     }
 
+    onMouseDown(event: MouseEvent){
+        //cc.audioEngine.playEffect(this.audio,false);
+        this.spawPl_bulet();
+    }
+
+    //spaw bullet at player position
+    spawPl_bulet(){
+        if(!this.bulletPrefab){
+            return null;
+        }
+
+        let block: cc.Node|null = null;
+
+        block = cc.instantiate(this.bulletPrefab);
+
+        this.node.addChild(block);
+
+        console.log(this.node.getPosition());
+        block.setPosition(this.node.getPosition());
+
+    }
+
     collision(): void {
         
     }
 
-    onDestroy() {
-        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
-        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
-    }
 
-    update(dt) {
-        this.move(dt);
-    }
+   
     
 }

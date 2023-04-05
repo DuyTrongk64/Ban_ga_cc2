@@ -1,4 +1,3 @@
-
 const {property} = cc._decorator;
 export abstract class Character extends cc.Component {
 
@@ -6,10 +5,11 @@ export abstract class Character extends cc.Component {
 
     protected hp: number;
 
-    @property(cc.Prefab)
-    bullet: cc.Prefab = null;
+    protected polygonCollider = null;
 
-    audio: cc.AudioClip = null;
+    protected bulletPrefab = null;
+
+    protected audio = null;
     
     protected _name: string;
    
