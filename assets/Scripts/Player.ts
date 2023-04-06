@@ -78,6 +78,12 @@ export class Player extends Character{
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN,this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP,this.onKeyUp, this);
         this.node.on(cc.Node.EventType.MOUSE_DOWN, this.onMouseDown, this);
+
+        //set up collider manager
+        var manager = cc.director.getCollisionManager();
+        manager.enabled = true;
+        manager.enabledDebugDraw = true;
+        manager.enabledDrawBoundingBox = true;
     }
 
     on_hit(): void {
@@ -148,7 +154,28 @@ export class Player extends Character{
         
     }
 
+    loadSprite(url: string){
+        //load sprite
+        var self = this;
+        var sprite = this.node.addComponent(cc.Sprite);
+        
+        cc.resources.load(url, cc.SpriteFrame, null, function (err, spriteFrame) {
+            sprite.spriteFrame = spriteFrame;
+           });
+        this.node.scale = 0.05;
+    }
 
+    addPolygonCollider(polygonPoints: cc.Vec2[]){
+        //add collider polygon
+        this.polygonCollider = this.node.addComponent(cc.PolygonCollider);
+        this.polygonCollider.points = polygonPoints;
+        this.node.getComponent(cc.Collider);
+    }
    
+    onDestroy() {
+        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+    }
+
     
 }
