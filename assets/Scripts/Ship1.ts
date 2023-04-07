@@ -7,22 +7,9 @@ export class Ship1 extends Player{
 
     createShip () {
         this.init();
+        
         this.hp = 3;
         this.speed = 500;
-        
-    
-
-        // // //load prefabs
-        // cc.resources.load('Prelabs/pl_bullet', cc.Prefab, (err, prefab) => {
-        //     if (err) {
-        //         cc.error(err.message || err);
-        //         return;
-        //     }
-        //     // Lưu trữ prefab đã tải trong property
-        //     this.bulletPrefab = cc.instantiate(prefab);
-        //     cc.director.getScene().addChild(this.bulletPrefab);
-            
-        // });
 
         this.loadSprite('Textures/ship1');
 

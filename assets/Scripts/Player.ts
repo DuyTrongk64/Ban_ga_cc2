@@ -1,4 +1,5 @@
 import { Character } from './Character';
+import {Bullet} from './Bullet';
 export class Player extends Character{
 
     private goLeft: boolean;
@@ -75,9 +76,10 @@ export class Player extends Character{
         this.goRight = false;
         this.goUp = false;
         this.goDown = false; 
+
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN,this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP,this.onKeyUp, this);
-        this.node.on(cc.Node.EventType.MOUSE_DOWN, this.onMouseDown, this);
+        this.node.parent.on(cc.Node.EventType.MOUSE_DOWN, this.onMouseDown, this);
 
         //set up collider manager
         var manager = cc.director.getCollisionManager();
@@ -131,23 +133,14 @@ export class Player extends Character{
     onMouseDown(event: MouseEvent){
         //cc.audioEngine.playEffect(this.audio,false);
         this.spawPl_bulet();
+        //console.log(this.node.getPosition());
     }
 
     //spaw bullet at player position
     spawPl_bulet(){
-        if(!this.bulletPrefab){
-            return null;
-        }
-
-        let block: cc.Node|null = null;
-
-        block = cc.instantiate(this.bulletPrefab);
-
-        this.node.addChild(block);
-
-        console.log(this.node.getPosition());
-        block.setPosition(this.node.getPosition());
-
+       let bullet = new Bullet();
+       bullet.getPos(this.node.getPosition());
+       bullet.spaw(this.node.parent);
     }
 
     collision(): void {
