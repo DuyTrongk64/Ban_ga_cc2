@@ -177,5 +177,8 @@ export class Player extends Character{
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     }
 
-    
+    selectShip(ship: cc.Node, name: string){
+        ship.addComponent(name);
+        ship.getComponent(name).createShip();
+    }
 }
