@@ -5,15 +5,13 @@ export abstract class Character extends cc.Component {
 
     protected hp: number;
 
+    protected speed: number;
+
     protected polygonCollider = null;
 
     protected bulletPrefab = null;
 
     protected audio = null;
-    
-    protected _name: string;
-   
-    protected _hp: number;
     
     abstract  init(): void
 
@@ -21,7 +19,9 @@ export abstract class Character extends cc.Component {
 
     abstract move(dt): void
 
-    abstract fire(): void
+    abstract spaw_bulet(): void
 
-    abstract collision(): void
+    abstract onCollisionEnter(other: cc.PhysicsCollider, self: cc.PhysicsCollider): void
+
+    abstract collidingWithEdge(): void;
 }

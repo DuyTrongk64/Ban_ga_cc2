@@ -24,6 +24,7 @@ export class Bullet extends cc.Component {
             block = cc.instantiate(prefab);
             parent.addChild(block);
             block.setPosition(this.pos);
+            //console.log(block.name);
         });
     }
 
@@ -37,8 +38,8 @@ export class Bullet extends cc.Component {
     }
 
     onCollisionEnter(other: cc.PhysicsCollider, self: cc.PhysicsCollider){
-        //console.log(`Collided with ${other.node.name}!`);
-        if(other.node.name == 'chicken'){
+        //console.log(`Collided with ${other.node.group}!`);
+        if(other.node.group == 'chicken'){
             this.node.destroy();
         }
     }

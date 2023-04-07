@@ -9,9 +9,6 @@ export class Player extends Character{
 
     private screenSize: cc.Size = cc.view.getFrameSize();
 
-    protected speed: number;
-    
-    
 
     onKeyDown(event) {
         // set a flag when key pressed
@@ -76,7 +73,7 @@ export class Player extends Character{
         this.goRight = false;
         this.goUp = false;
         this.goDown = false; 
-
+        
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN,this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP,this.onKeyUp, this);
         this.node.parent.on(cc.Node.EventType.MOUSE_DOWN, this.onMouseDown, this);
@@ -84,8 +81,8 @@ export class Player extends Character{
         //set up collider manager
         var manager = cc.director.getCollisionManager();
         manager.enabled = true;
-        // manager.enabledDebugDraw = true;
-        // manager.enabledDrawBoundingBox = true;
+        manager.enabledDebugDraw = true;
+        manager.enabledDrawBoundingBox = true;
     }
 
     on_hit(): void {
@@ -118,9 +115,6 @@ export class Player extends Character{
         this.node.stopAllActions();
     }
 
-    fire(): void {
-        
-    }
 
     //set collision with eggs 
     onCollisionEnter(other: cc.PhysicsCollider, self: cc.PhysicsCollider){
@@ -132,12 +126,12 @@ export class Player extends Character{
 
     onMouseDown(event: MouseEvent){
         //cc.audioEngine.playEffect(this.audio,false);
-        this.spawPl_bulet();
+        this.spaw_bulet();
         //console.log(this.node.getPosition());
     }
 
     //spaw bullet at player position
-    spawPl_bulet(){
+    spaw_bulet(){
        let bullet = new Bullet();
        bullet.getPos(this.node.getPosition());
        bullet.spaw(this.node.parent);

@@ -1,6 +1,6 @@
 {
   "__type__": "cc.AnimationClip",
-  "_name": "chicken",
+  "_name": "chicken_1",
   "_objFlags": 0,
   "_native": "",
   "_duration": 0.75,
@@ -14,7 +14,7 @@
           {
             "frame": 0,
             "value": {
-              "__uuid__": "8d56e942-d3f9-4420-9e80-e89134b209cb"
+              "__uuid__": "2994bf48-16c3-46c1-bbb0-b8677eab1184"
             }
           },
           {
