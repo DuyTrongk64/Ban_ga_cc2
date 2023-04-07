@@ -5,17 +5,16 @@ export class Bullet extends cc.Component {
 
     protected damage = 0;
     protected speed = 300;
-
+    private direction: cc.Vec3;
     private pos: cc.Vec2;
 
     getPos(pos: cc.Vec2){
         this.pos = pos;
     }
-
-    
+ 
     spaw(parent: cc.Node){
         //load prefabs
-        cc.resources.load('Prelabs/pl_bullet', cc.Prefab, (err, prefab) => {
+        cc.resources.load(window.GLOBAL_BULLET, cc.Prefab, (err, prefab) => {
             if (err) {
                 cc.error(err.message || err);
                 return;
@@ -43,6 +42,7 @@ export class Bullet extends cc.Component {
             this.node.destroy();
         }
     }
+    
     
     update (dt) {
         this.collidingWithEdge();

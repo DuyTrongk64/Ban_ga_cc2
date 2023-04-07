@@ -84,8 +84,8 @@ export class Player extends Character{
         //set up collider manager
         var manager = cc.director.getCollisionManager();
         manager.enabled = true;
-        manager.enabledDebugDraw = true;
-        manager.enabledDrawBoundingBox = true;
+        // manager.enabledDebugDraw = true;
+        // manager.enabledDrawBoundingBox = true;
     }
 
     on_hit(): void {
