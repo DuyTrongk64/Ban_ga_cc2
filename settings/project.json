@@ -2,7 +2,9 @@
   "group-list": [
     "default",
     "chicken",
-    "bullet"
+    "bullet",
+    "player",
+    "eggs"
   ],
   "collision-matrix": [
     [
@@ -11,9 +13,24 @@
     [
       false,
       false,
+      true,
       true
     ],
     [
+      false,
+      true,
+      false
+    ],
+    [
+      false,
+      true,
+      false,
+      false,
+      true
+    ],
+    [
+      false,
+      false,
       false,
       true,
       false

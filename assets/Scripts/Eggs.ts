@@ -1,7 +1,7 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export class Bullet extends cc.Component {
+export class Eggs extends cc.Component {
 
     protected damage = 0;
     protected speed = 300;
@@ -38,16 +38,15 @@ export class Bullet extends cc.Component {
     }
 
     onCollisionEnter(other: cc.PhysicsCollider, self: cc.PhysicsCollider){
-        //console.log(`Collided with ${other.node.group}!`);
-        if(other.node.group == 'chicken'){
+        //console.log(`Collided with ${other.node.name}!`);
+        if(other.node.group == 'player'){
             this.node.destroy();
         }
     }
-    
-    
+
     update (dt) {
         this.collidingWithEdge();
-        let direction = new cc.Vec3(0, 1, 0);
+        let direction = new cc.Vec3(0, -1, 0);
         let newPosition = this.node.position.add(direction.multiplyScalar(this.speed * dt));
         this.node.setPosition(newPosition);
     }

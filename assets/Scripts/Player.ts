@@ -74,6 +74,8 @@ export class Player extends Character{
         this.goUp = false;
         this.goDown = false; 
         
+        this.node.setPosition(new cc.Vec3(0,-220,0));
+
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN,this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP,this.onKeyUp, this);
         this.node.parent.on(cc.Node.EventType.MOUSE_DOWN, this.onMouseDown, this);
@@ -81,8 +83,8 @@ export class Player extends Character{
         //set up collider manager
         var manager = cc.director.getCollisionManager();
         manager.enabled = true;
-        manager.enabledDebugDraw = true;
-        manager.enabledDrawBoundingBox = true;
+        // manager.enabledDebugDraw = true;
+        // manager.enabledDrawBoundingBox = true;
     }
 
     on_hit(): void {
@@ -134,7 +136,7 @@ export class Player extends Character{
     spaw_bulet(){
        let bullet = new Bullet();
        bullet.getPos(this.node.getPosition());
-       bullet.spaw(this.node.parent);
+       bullet.spaw(this.node.parent,window.GLOBAL_BULLET);
     }
 
     collision(): void {

@@ -36,5 +36,8 @@ export default class NewClass extends cc.Component  {
     start () {
     }
 
-    // update (dt) {}
+    update (dt) {
+        let enemy = new Enemy();
+        enemy.spaw_eggs(this.node.parent);
+    }
 }

@@ -267,8 +267,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": "2bc0jUccBKJKuKpOYP075H"
   },
   {
@@ -310,7 +310,7 @@
       "array": [
         0,
         0,
-        309.91576042183056,
+        309.84223355317795,
         0,
         0,
         0,

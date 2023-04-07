@@ -1,4 +1,5 @@
 import { Enemy } from "./Enemy";
+import { Eggs } from './Eggs';
 const {ccclass, property} = cc._decorator;
 
 @ccclass
@@ -7,14 +8,7 @@ export class Chicken extends Enemy {
     onLoad () {
         this.hp = 3;
         this.speed = 10;
-        
-    }
-
-    onCollisionEnter(other: cc.PhysicsCollider, self: cc.PhysicsCollider){
-        console.log(`Collided with ${other.node.group}!`);
-        if(other.node.group == 'bullet'){
-            this.node.destroy();
-        }
+        this.spawnTimerMax = 50;
     }
 
     spawEnenemy(parent: cc.Node,pos: cc.Vec3){
@@ -33,6 +27,17 @@ export class Chicken extends Enemy {
         });
     }    
 
+    spaw_eggs(parent: cc.Node): void {
+        this.spawnTimer += 0.1;
+
+        if(this.spawnTimer > this.spawnTimerMax){
+            this.count++;
+            let eggs = new Eggs();
+            eggs.getPos(this.node.getPosition()); 
+            eggs.spaw(parent,'Prelabs/egg');
+        }
+    }
+    
     update (dt) {
         this.move(dt);
     }

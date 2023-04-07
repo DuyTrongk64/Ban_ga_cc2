@@ -1,7 +1,12 @@
 import { Character } from './Character';
 import { Chicken } from './Chicken-1';
+
 export class Enemy extends Character{
 
+    protected spawnTimerMax: number = 0;
+    protected spawnTimer: number = 0;
+    protected count: number =0;
+    
     init(): void {
         
     }
@@ -21,8 +26,11 @@ export class Enemy extends Character{
         
     }
 
+    
+
+
     onCollisionEnter(other: cc.PhysicsCollider, self: cc.PhysicsCollider){
-        console.log(`Collided with ${other.node.group}!`);
+        //console.log(`Collided with ${other.node.group}!`);
         if(other.node.group == 'bullet'){
             this.node.destroy();
         }
