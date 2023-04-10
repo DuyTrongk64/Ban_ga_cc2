@@ -1,5 +1,5 @@
 import { Character } from './Character';
-import { Chicken } from './Chicken-1';
+import { Eggs } from './Eggs';
 
 export class Enemy extends Character{
 
@@ -26,9 +26,6 @@ export class Enemy extends Character{
         
     }
 
-    
-
-
     onCollisionEnter(other: cc.PhysicsCollider, self: cc.PhysicsCollider){
         //console.log(`Collided with ${other.node.group}!`);
         if(other.node.group == 'bullet'){
@@ -45,9 +42,33 @@ export class Enemy extends Character{
         }
     }
 
-    drawEnemy(parent: cc.Node,pos: cc.Vec3){
-        let chicken = new Chicken();
-        chicken.spawEnenemy(parent,pos)
+    spaw_eggs(parent: cc.Node,pos: cc.Vec2): void {
+        this.spawnTimer += 0.1;
+
+        if(this.spawnTimer > this.spawnTimerMax){
+            this.count++;
+            let eggs = new Eggs();
+            eggs.spaw(parent,'Prelabs/egg',pos);
+        }
     }
 
+    getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+      }
+
+    randSpawEggs(parent: cc.Node,chickens: Array<cc.Node>){
+        this.spawnTimer += 0.1;
+        if(this.spawnTimer > this.spawnTimerMax){
+            this.count++;
+            let rand = this.getRandomInt(chickens.length);
+            console.log(chickens[rand]);
+            //console.log(chickens[rand].getPosition()!= null);
+            //console.log(this.chicken[rand].isValid);
+            //if(this.node.isValid){
+                // let pos = chickens[rand].getPosition();
+                // this.spaw_eggs(parent,pos);
+                // this.spawnTimer =0;
+            //}
+        }
+    }
 }

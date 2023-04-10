@@ -6,13 +6,9 @@ export class Eggs extends cc.Component {
     protected damage = 0;
     protected speed = 300;
 
-    private pos: cc.Vec2;
-
-    getPos(pos: cc.Vec2){
-        this.pos = pos;
-    }
  
-    spaw(parent: cc.Node,url: string){
+    spaw(parent: cc.Node,url: string,pos: cc.Vec2){
+        let block: cc.Node|null = null;
         //load prefabs
         cc.resources.load(url, cc.Prefab, (err, prefab) => {
             if (err) {
@@ -20,12 +16,13 @@ export class Eggs extends cc.Component {
                 return;
             }
             // Lưu trữ prefab đã tải trong property
-            let block: cc.Node|null = null;
+            
             block = cc.instantiate(prefab);
             parent.addChild(block);
-            block.setPosition(this.pos);
+            block.setPosition(pos);
             //console.log(block.name);
         });
+        return block;
     }
 
     collidingWithEdge(){

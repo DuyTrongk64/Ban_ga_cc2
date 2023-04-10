@@ -11,7 +11,7 @@ export class Chicken extends Enemy {
         this.spawnTimerMax = 50;
     }
 
-    spawEnenemy(parent: cc.Node,pos: cc.Vec3){
+    spawEnenemy(parent: cc.Node,pos: cc.Vec3,callback: (block: cc.Node) => cc.Node){
         //load prefabs
         cc.resources.load('Prelabs/chicken', cc.Prefab, (err, prefab) => {
             if (err) {
@@ -23,20 +23,9 @@ export class Chicken extends Enemy {
             block = cc.instantiate(prefab);
             parent.addChild(block);
             block.setPosition(pos);
-            //console.log(block.name);
+            callback(block);
         });
     }    
-
-    spaw_eggs(parent: cc.Node): void {
-        this.spawnTimer += 0.1;
-
-        if(this.spawnTimer > this.spawnTimerMax){
-            this.count++;
-            let eggs = new Eggs();
-            eggs.getPos(this.node.getPosition()); 
-            eggs.spaw(parent,'Prelabs/egg');
-        }
-    }
     
     update (dt) {
         this.move(dt);
